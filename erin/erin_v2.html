@@ -3,7 +3,7 @@
 <!--
 
 erin theme by http://anhchors.tumblr.com
-support: anhchor@gmail.com | http://anhchorsupport.tumblr.com
+support: http://anhchorsupport.tumblr.com
 resource credits: http://erin-theme.tumblr.com/credits
 
 -->
@@ -45,6 +45,9 @@ resource credits: http://erin-theme.tumblr.com/credits
 <meta name="if:Show Random" content="1" />
 <meta name="if:Show Search" content="0" />
 
+<meta name="select:Background Image" content="background-tile" title="Tiled">
+<meta name="select:Background Image" content="background-full" title="Fullsize">
+
 <meta name="if:White Like and Reblog Buttons" content="0" />
 <meta name="if:Show Copyright" content="1" />
 
@@ -56,74 +59,78 @@ resource credits: http://erin-theme.tumblr.com/credits
 <style type="text/css">
 
 body { 
-    background:{color:Background} url('{image:Background Image}') fixed; 
-    color:{color:Body Text}; 
-    font-family:{block:IfGoogleFont}{text:Google Font},{/block:IfGoogleFont} {font:Font}, sans-serif;
-    font-size:{text:Font Size};
-    line-height:1.5; 
-    margin:0; 
-    word-wrap:break-word; 
+    background-color: {color:Background};
+    background-image: url('{image:Background Image}');
+    background-attachment: fixed; 
+    color: {color:Body Text}; 
+    font-family: {block:IfGoogleFont}{text:Google Font},{/block:IfGoogleFont} {font:Font}, sans-serif;
+    font-size: {text:Font Size};
+    line-height: 1.5; 
+    margin: 0; 
+    word-wrap: break-word; 
 }
-
+.background-tile {
+    background-repeat: repeat;
+}
+.background-full {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 a { 
-    color:{color:Accent}; 
-    text-decoration:none; 
-    transition:0.25s;
+    color: {color:Accent}; 
+    text-decoration: none; 
+    transition: 0.25s;
 }
-
 a:hover { 
-    color:{color:Accent Hover}; 
+    color: {color:Accent Hover}; 
 }
-
 a img { 
-    border:0; 
+    border: 0; 
 }
-
 h1, h2, h3, h4, h5, h6 { 
-    margin:0; 
-    padding:0; 
+    margin: 0; 
+    padding: 0; 
 }
-
 hr { 
-    border:none; 
-    height:1px; 
-    background:{color:Blockquote}; 
-    width:80%; 
-    background-image:-webkit-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background}); 
-    background-image:-moz-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background}); 
-    background-image:-ms-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background});
-    background-image:-o-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background});
+    border: none; 
+    height: 1px; 
+    background: {color:Blockquote}; 
+    width: 80%; 
+    background-image: -webkit-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background}); 
+    background-image: -moz-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background}); 
+    background-image: -ms-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background});
+    background-image: -o-linear-gradient(left, {color:Post Background}, {color:Blockquote}, {color:Post Background});
 }
-
 blockquote { 
-    border-left:1px solid {color:Blockquote}; 
-    margin:0 0 0 5%; 
-    padding:0 0 0 5%; 
+    border-left: 1px solid {color:Blockquote}; 
+    padding: 0 0 0 5%; 
 }
-
 blockquote blockquote {
-    margin:0;
-    padding:0 0 0 5%;
+    margin: 0;
+    padding: 0 0 0 5%;
 }
-
+@media (min-width: 601px) {
+    blockquote { margin: 0 0 0 5%; }
+}
+@media (max-width:600px) {
+    blockquote { margin: 0; }
+}
 pre { 
-    background:#e4e4e4; 
-    color:#444;
-    padding:15px; 
-    white-space:pre-wrap;
+    background: #e4e4e4; 
+    color: #444;
+    padding: 15px; /* !!! */ 
+    white-space: pre-wrap;
 }
-
 img { 
-    max-width:100%; 
-    height:auto;
-}
-    
-blockquote iframe { 
-    max-width:100%; 
+    max-width: 100%; 
+    height: auto;
 } 
-
+blockquote iframe { 
+    max-width: 100%; 
+} 
 .post iframe#youtube_iframe { 
-    max-width:100%; 
+    max-width: 100%; 
 }
 
 /* BREAKPOINTS */
@@ -182,489 +189,440 @@ blockquote iframe {
 
 
 .wrapper {
-    margin:30px auto; 
+    margin: 30px auto; 
 } 
+main {
+    position: relative;
+}
 
 /* SIDEBAR */
 .sidebar { 
-    font-size:.9em; 
+    font-size: .9em; 
 }
-
 img.icon { 
-    border-radius:80px; /* border-radius percentage fallback */
-    border-radius:100%; 
-    display:block; 
-    margin:0 auto 15px; 
-    width:80px; 
+    border-radius: 80px; /* border-radius percentage fallback */
+    border-radius: 100%; 
+    display: block; 
+    margin: 0 auto 15px; 
+    width: 80px; 
 }
-
 h2.blogtitle { 
-    font-family:{block:IfGoogleFont}{text:Google Font}, {/block:IfGoogleFont}{TitleFont};
-    font-weight:{TitleFontWeight};
-    margin:0 0 15px; 
-    padding:0; 
+    font-family: {block:IfGoogleFont}{text:Google Font}, {/block:IfGoogleFont}{TitleFont};
+    font-weight: {TitleFontWeight};
+    margin: 0 0 15px; 
+    padding: 0; 
 }
-
 .desc {
-    background:{color:Post Background};
-    border-radius:3px; 
-    display:none; /* hidden unless either page links and description are shown */
-    margin:0 0 15px 0;
-    padding:30px; 
-    text-align:left; 
+    background: {color:Post Background};
+    border-radius: 3px; 
+    display: none; /* hidden unless either page links and description are shown */
+    margin: 0 0 15px 0;
+    padding: 30px; 
+    text-align: left; 
 }
-
 {block:HasPages} .desc { 
-    display:block;
+    display: block;
 } {/block:HasPages}
-
 {block:ShowDescription} .desc { 
-    display:block; 
+    display: block; 
 }{/block:ShowDescription}
-
 ul.links { 
-    {block:ShowDescription} margin:15px 0 0 0; {/block:ShowDescription}
-    {block:HideDescription} margin:0; {/block:HideDescription} 
-    padding:0; 
+    {block:ShowDescription} margin: 15px 0 0 0; {/block:ShowDescription}
+    {block:HideDescription} margin: 0; {/block:HideDescription} 
+    padding: 0; 
 }
-
 ul.links li { 
-    border-bottom:1px dashed {color:Blockquote};
+    border-bottom: 1px dashed {color:Blockquote};
 }
-
 ul.nav { 
-    display:block; 
-    list-style:none; 
-    margin:0 0 15px 0; 
-    padding:0; 
-    text-align:center;
+    display: block; 
+    list-style: none; 
+    margin: 0 0 15px 0; 
+    padding: 0; 
+    text-align: center;
 }
-
 ul.nav li { 
     display:inline-block; 
     margin:0 5px;
 }
-
 ul.nav li a:hover { 
-    color:{color:Accent};
+    color: {color:Accent};
 }
-
 span.tooltip { 
-    background:{color:Accent}; 
-    color:{color:Link Post Color}; 
-    font-size:.9em;
-    padding:0 5px;  
-    position:absolute;
-    text-align:center; 
+    background: {color:Accent}; 
+    color: {color:Link Post Color}; 
+    font-size: .9em;
+    padding: 0 5px;  
+    position: absolute;
+    text-align: center; 
     /* hover effect: */
-    margin:-15px 0 0 -5px; 
-    opacity:0;
-    transition:0.25s ease-in-out; 
-    visibility:hidden;
+    margin: -15px 0 0 -5px; 
+    opacity: 0;
+    transition: 0.25s ease-in-out; 
+    visibility: hidden;
 }
-
 ul.nav li:hover span.tooltip { 
-    margin:-25px 0 0 -5px; 
-    opacity:1;
-    visibility:visible; 
+    margin: -25px 0 0 -5px; 
+    opacity: 1;
+    visibility: visible; 
 }
-
 .searchbar { 
-    padding:0 0 15px 0;
+    padding: 0 0 15px 0;
 }
-
 input#search { 
-    background:{color:Post Background};
-    border:none;
-    border-radius:3px;
-    color:{color:Body Text};
-    font-family:{font:Font};
-    padding:7px 15px;
-    width:170px;
+    background: {color:Post Background};
+    border: none;
+    border-radius: 3px;
+    color: {color:Body Text};
+    font-family: {font:Font};
+    padding: 7px 15px;
+    width: 170px;
 }
-
-input#search:hover, input#search:focus, input#search:active { 
-    opacity:1;
-    outline:none;
+input#search:hover,
+input#search:focus,
+input#search:active { 
+    opacity: 1;
+    outline: none;
 }
-
 
 /* POSTS */
 article { 
-    margin:0 0 30px 0;
+    margin: 0 0 30px 0;
 }
-
 .post {
-    background:{color:Post Background};  
-    border-radius:3px; 
-    padding:30px;
+    background: {color:Post Background};  
+    border-radius: 3px; 
+    padding: 30px;
 }
-
-p.read_more_container { 
-    border-top:1px dashed {color:Blockquote}; 
-    border-bottom:1px dashed {color:Blockquote}; 
-    padding:5px 15px; 
-    text-align:center;
+@media (max-width: 600px) {
+    .post ul { padding-left: 15px; }
 }
-
+.read_more,
+.read_more_container { 
+    border-top: 1px dashed {color:Blockquote}; 
+    border-bottom: 1px dashed {color:Blockquote};
+    display: block; 
+    padding: 5px 15px; 
+    text-align: center;
+}
 .pagesort { /* day, tag, search pages */
-    color:{color:Tags Colour};
-    margin:0 0 15px 0; 
-    text-align:center; 
+    color: {color:Tags Colour};
+    margin: 0 0 15px 0; 
+    text-align: center; 
 }
-
-span.tag, span.search_query {
+span.tag,
+span.search_query {
     font-style:italic; 
 }
 
 /* PHOTO, PHOTOSET, PANORAMA POSTS */
 .photopost { 
-    margin:0 -30px; 
-    text-align:center;
+    margin: 0 -30px; 
+    text-align: center;
 }
-
 .photopost iframe { /* responsive photoset on mobile/tablet */
-    width:1px; 
-    min-width:100%; 
-    *width:100%; 
+    width: 1px; 
+    min-width: 100%; 
+    *width: 100%; 
 }
-
+.lightbox-image {
+    max-width: none;
+    height: initial;
+}
 .photopost:hover .highres { 
-    opacity:1; 
+    opacity: 1; 
 }
-
 .highres { 
-    background:rgba(0,0,0,0.7); 
-    border-radius:3px; 
-    color:#fff; 
-    font-size:1.5em; 
-    margin:1em 0 0 1em; 
-    padding:.5em .8em; 
-    opacity:0; 
-    position:absolute; 
-    text-align:center; 
-    transition:.2s ease-in; 
-    z-index:99; 
+    background: rgba(0,0,0,0.7); 
+    border-radius: 3px; 
+    color: #fff; 
+    font-size: 1.5em; 
+    margin: 1em 0 0 1em; 
+    padding: .5em .8em; 
+    opacity: 0; 
+    position: absolute; 
+    text-align: center; 
+    transition: .2s ease-in; 
+    z-index: 99; 
 }
-
 .highres:hover { 
-    background:rgba(0,0,0,.9); 
+    background: rgba(0,0,0,.9); 
 }
-
 img.nothighres { 
     display:none; 
 }
 
-
 /* QUOTE POSTS */
 h3.quotepost { 
-    border-bottom:1px dashed {color:Blockquote}; 
-    font-weight:400; 
-    margin-bottom:15px;
-    padding:0 0 15px 0;
+    border-bottom: 1px dashed {color:Blockquote}; 
+    font-weight: 400; 
+    margin-bottom: 15px;
+    padding: 0 0 15px 0;
 }
 
 /* LINK POSTS */
 .link-thumbnail {
-    text-align:center;
+    text-align: center;
 }
-
 .link-thumbnail img { 
-    border-radius:100%; 
-    display:inline-block;
-    margin:0 auto 15px;
-    width:40px; 
+    border-radius: 100%; 
+    display: inline-block;
+    margin: 0 auto 15px;
+    width: 40px; 
 }
-
 a.link { 
-    display:block; 
-    color:{color:Link Post Color}; 
-    background:{color:Accent}; 
-    margin:0 -30px 15px;
-    padding:15px 30px; 
+    display: block; 
+    color: {color:Link Post Color}; 
+    background: {color:Accent}; 
+    margin: 0 -30px 15px;
+    padding: 15px 30px; 
 }
-
 .link-excerpt {
-    border-bottom:1px dashed {color:Blockquote};
-    font-size:.9em;
-    margin:0 0 15px;
-    padding:0 0 15px;
+    border-bottom: 1px dashed {color:Blockquote};
+    font-size: .9em;
+    margin: 0 0 15px;
+    padding: 0 0 15px;
 }
 
 /* CHAT POSTS */
 ul.chat { 
-    list-style:none; 
-    margin:0px; 
-    padding:0px; 
+    list-style: none; 
+    margin: 0px; 
+    padding: 0px; 
 }
-
 ul.chat li { 
-    border-bottom:1px dashed {color:Blockquote}; 
-    padding:7px 15px;
+    border-bottom: 1px dashed {color:Blockquote}; 
+    padding: 7px 15px;
 }
-
 ul.chat li:last-child { 
-    border-bottom:none;
+    border-bottom: none;
 }
 
 /* AUDIO POSTS */
 .audioembed {
-    margin:0 -30px;
+    margin: 0 -30px;
 }
 
 .audioembed iframe { 
-    width:1px; 
-    min-width:100%; 
-    *width:100%; 
+    width: 1px; 
+    min-width: 100%; 
+    *width: 100%; 
 }
 iframe.spotify_audio_player { 
-    height:80px; 
+    height: 80px; 
 }
 
 /* VIDEO POSTS */
 .videopost { 
-    margin:0 -30px;
+    margin: 0 -30px;
 }
-
-.videopost iframe {
-    width:1px; 
-    min-width:100%; 
-    *width:100%; 
+.videopost iframe { /* dry !!! */
+    width: 1px; 
+    min-width: 100%; 
+    *width: 100%; 
 }
 
 /* ANSWER POSTS */
 .answerpost-user { /* asked by, answered by*/
-    color:{color:Secondary Text};  
-    font-size:.9em;
+    color: {color:Secondary Text};  
+    font-size: .9em;
 }
-
 .answerpost { /* question */
-    border-bottom:1px dashed {color:Blockquote};  
-    font-weight:400;
-    margin:0 0 20px;
+    border-bottom: 1px dashed {color:Blockquote};  
+    font-weight: 400;
+    margin: 0 0 20px;
 }
-
 img.answer-icon { 
-    width:{text:Font Size}; /* calc fallback */
-    width:calc({text:Font Size} + 2px); 
-    border-radius:100%; 
-    vertical-align:middle; 
-    margin:0 5px; 
-    margin-top:-2px;
+    width: {text:Font Size}; /* calc fallback */
+    width: calc({text:Font Size} + 2px); 
+    border-radius: 100%; 
+    vertical-align: middle; 
+    margin: 0 5px; 
+    margin-top: -2px;
 }
 
 /* POST INFO */
 .posthead { /* reblog info */
-    color:{color:Secondary Text}; 
-    font-size:.9em; 
-    margin:-15px 0 15px 0; 
-    text-transform:lowercase;
+    color: {color:Secondary Text}; 
+    font-size: .9em; 
+    margin: -15px 0 15px 0; 
+    text-transform: lowercase;
 }
-
 .postfoot { /* post info */
-    color:{color:Secondary Text};
-    font-size:.9em;
-    margin:15px 0 -15px 0;
+    color: {color:Secondary Text};
+    font-size: .9em;
+    margin: 15px 0 -15px 0;
 }
-
 ul.postinfo {
-    display:inline;
-    list-style:none;
-    margin:0;
-    padding:0;
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
-
 ul.postinfo li {
-    display:inline-block;
+    display: inline-block;
 }
-
 ul.postinfo li::before {
-    content:'+ ';
+    content: '+ ';
 }
-
 ul.postinfo li:first-child::before {
-    content:'';
+    content: '';
 }
 
 /* REBLOG AND LIKE BUTTONS */
 ul.rb { 
-    list-style:none;
-    padding:0;
+    list-style: none;
+    padding: 0;
 }
-
 ul.rb li { 
-    display:inline-block; 
-    margin:0 0 0 5px;
+    display: inline-block; 
+    margin: 0 0 0 5px;
 }
-
 ul.rb li:first-child {
-    margin:0;
+    margin: 0;
 }
-
-.reblog_button, .like_button iframe {
-    width:{text:Font Size} !important; /* calc fallback */
-    height:{text:Font Size} !important; /* calc fallback */
-    width:calc({text:Font Size} + 2px) !important;
-    height:calc({text:Font Size} + 2px) !important;
+.reblog_button,
+.like_button iframe {
+    width: {text:Font Size} !important; /* calc fallback */
+    height: {text:Font Size} !important; /* calc fallback */
+    width: calc({text:Font Size} + 2px) !important;
+    height: calc({text:Font Size} + 2px) !important;
 }
-
 
 /* TAGS */
 ul.tags { 
-    font-size:0.9em;
-    list-style:none; 
-    margin:0; 
-    padding:10px 30px; 
+    font-size: 0.9em;
+    list-style: none; 
+    margin: 0; 
+    padding: 10px 30px; 
 }
-
 ul.tags li { 
-    display:inline; 
-    margin:0 7px;
+    display: inline; 
+    margin: 0 7px;
 }
-
 ul.tags li:first-child { 
-    margin:0 7px 0 0;
+    margin: 0 7px 0 0;
 }
-
 ul.tags a { 
-    color:{color:Tags Colour};
+    color: {color:Tags Colour};
 }
-
 ul.tags a:hover { 
-    color:{color:Accent};
+    color: {color:Accent};
 }
 
 /* POST NOTES */
 .postnotes { 
-    background:{color:Post Background}; 
-    border-radius:3px; 
-    margin:30px 0 0 0; 
-    {block:Posts}{block:HasTags} margin:0; {/block:HasTags}{/block:Posts}
-    padding:30px;
+    background: {color:Post Background}; 
+    border-radius: 3px; 
+    margin: 30px 0 0 0; 
+    {block:Posts}{block:HasTags} margin: 0; {/block:HasTags}{/block:Posts}
+    padding: 30px;
 }
-
 ol.notes { 
-    list-style:none; 
-    margin:0px; 
-    padding:0px; 
-    text-align:left;    
+    list-style: none; 
+    margin: 0px; 
+    padding: 0px; 
+    text-align: left;    
     {block:IfDisqusShortname}
-        border-top:1px dashed {color:Blockquote};
-        display:none;
-        margin:7px 0 0 0;
-        padding:7px 0 0 0;
+        border-top: 1px dashed {color:Blockquote};
+        display: none;
+        margin: 7px 0 0 0;
+        padding: 7px 0 0 0;
     {/block:IfDisqusShortname} /* only show postnotes onclick if disqus enabled*/
 }
-
 .expandnotes {
-    color:{color:Accent}; 
-    cursor:pointer;
-    text-align:center; 
+    color: {color:Accent}; 
+    cursor: pointer;
+    text-align: center; 
 }
-
 .disqus {
-    background:{color:Post Background};
-    color:{color:Body Text};
-    padding:30px;
-    border-radius:3px;
-    margin:30px 0 0 0;
+    background: {color:Post Background};
+    color: {color:Body Text};
+    padding: 30px;
+    border-radius: 3px;
+    margin: 30px 0 0 0;
 }
-
 ol.notes li.note { 
-    border-bottom:1px dashed {color:Blockquote}; 
-    padding:10px 15px; 
+    border-bottom: 1px dashed {color:Blockquote}; 
+    padding: 10px 15px; 
 }
-
 ol.notes li.note:first-child { 
-    padding:0 15px 10px 15px; 
+    padding: 0 15px 10px 15px; 
 }
-
 ol.notes li.note:last-child { 
-    padding:10px 15px 0 15px; 
-    border-bottom:0px; 
+    padding: 10px 15px 0 15px; 
+    border-bottom: 0px; 
 }
-
 ol.notes li.note img.avatar { 
-    margin:0px 10px -3px 0px; 
-    border-radius:100%; 
+    margin: 0px 10px -3px 0px; 
+    border-radius: 100%; 
 }
-
 ol.notes blockquote { 
-    margin:10px 0px 0px 30px;
+    margin: 10px 0px 0px 30px;
 }
-
 ol.notes blockquote a { 
-    color:{color:Secondary Text};
+    color: {color:Secondary Text};
 }
-
 
 /* PAGINATION */
 .pagination { 
-    clear:both; 
-    color:{color:Tags Colour}; 
-    font-size:.9em; 
-    text-align:center; 
+    clear: both; 
+    color: {color:Tags Colour}; 
+    font-size: .9em; 
+    text-align: center; 
 }
-
 .pagination ol { 
-    color:{color:Tags Colour};
-    list-style:none; 
-    margin:0; 
-    padding:15px 0;
+    color: {color:Tags Colour};
+    list-style: none; 
+    margin: 0; 
+    padding: 15px 0;
 }
-
 .pagination li { 
-    border-bottom:3px solid {color:Tags Colour}; 
-    display:inline-block; 
-    margin:0px 1px; 
-    padding:10px; 
-    transition-duration:0.25s;
+    border-bottom: 3px solid {color:Tags Colour}; 
+    display: inline-block; 
+    margin: 0px 1px; 
+    padding: 10px; 
+    transition-duration: 0.25s;
 }
-
 .pagination li:hover { 
-    border-bottom:3px solid {color:Accent};
+    border-bottom: 3px solid {color:Accent};
 }
-
 .pagination a { 
-    color:{color:Tags Colour};
+    color: {color:Tags Colour};
 }
-
 .pagination li#current { 
-    border-bottom:3px solid {color:Accent};
-    font-weight:700;
+    border-bottom: 3px solid {color:Accent};
+    font-weight: 700;
 }
-
 .pagination ul { /* day/tag pages navigation */
-    color:{color:Tags Colour}; 
-    float:left;
-    list-style:none;
+    color: {color:Tags Colour}; 
+    float: left;
+    list-style: none;
     margin:0; 
-    padding:15px 0; 
-    text-align:right;
+    padding: 15px 0; 
+    text-align: right;
 }
-
 .pagination li.nextday { 
-    float:left;
+    float: left;
 }
-
 .pagination ul li { 
     margin:0 0 15px 0;
 }
 
 footer { 
-    border-top:1px solid {color:Blockquote}; 
-    bottom:0; 
-    clear:both; 
-    color:{color:Tags Colour}; 
-    font-size:.9em; 
-    margin:30px 0 0 0;
-    padding:15px 15px 0 15px; 
+    border-top: 1px solid {color:Blockquote}; 
+    bottom: 0; 
+    clear: both; 
+    color: {color:Tags Colour}; 
+    font-size: .9em; 
+    margin: 30px 0 0 0;
+    padding: 15px 15px 0 15px; 
 }
 
 footer ul {
-    list-style:none;
-    margin:0;
-    padding:0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 {CustomCSS}
@@ -677,7 +635,7 @@ footer ul {
 </head>
 
 
-<body>
+<body class="{select:Background Image}">
 
 <div class="wrapper">
 
@@ -765,9 +723,6 @@ footer ul {
 {block:Text}
     {block:Title}<h1>{Title}</h1>{/block:Title}
     {Body}
-    {block:More}
-        <p class="read_more_container"><a href="{Permalink}">{lang:Read more}</a></p>
-    {/block:More}
 {/block:Text}
 
 {block:Photo}
@@ -847,7 +802,7 @@ footer ul {
             <div class="answerpost-user">
                 <img src="{AnswererPortraitURL-24}" class="answer-icon" /> {Answerer} 
             </div>
-            <div class="answerpost">{Answer}</div>
+            {Answer}
             {Replies}
         {/block:Answerer}
     {/block:RebloggedFrom}
@@ -855,6 +810,10 @@ footer ul {
         {Answer}
     {/block:NotReblog}
 {/block:Answer}
+
+{block:More}
+    <p class="read_more_container"><a href="{Permalink}">{lang:Read more}</a></p>
+{/block:More}
 
 {block:Date}
     <div class="postfoot">
@@ -979,6 +938,7 @@ footer ul {
     </div>
 {/block:Pagination}
 
+
 <footer>
     <ul>
         {block:IfShowCopyright}<li class="copyright">&#0169; {CopyrightYears} {Title}</li>{/block:IfShowCopyright}
@@ -999,7 +959,6 @@ footer ul {
     });
 </script>
 
-<script src="path/to/jquery.fitvids.js"></script>
 <script> // fitvids for responsive videos
       $(document).ready(function(){
         // Target your .container, .wrapper, .post, etc.
