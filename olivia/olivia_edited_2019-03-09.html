@@ -4,7 +4,7 @@
 
 olivia theme by anh
 anhchors.tumblr.com
-ver: march 2019
+september 9, 2017
 
 -->
 
@@ -84,7 +84,10 @@ body {
 }
 
 @media (min-width: 600px) {
-	body { font-size: {text:Font Size}; }
+	body { 
+	    border: 1em solid white;
+	    font-size: {text:Font Size};
+	}
 }
 @media (max-width: 599px) {
 	.font-amiri { 
@@ -165,20 +168,37 @@ HEADER
 
 @media (min-width: 900px) {
 	header { 
-		margin: 100px 0; 
+		margin: 2em 0; 
 	}
 	header h1 { 
-		font-size: 4em; 
+		font-size: 2em; 
 	}
     .description { 
-    	margin: 50px 0; 
+    	margin: 1em auto 2em;
+    	max-width: 50ch;
     }
 	nav ol { 
-		margin: 15px 0; 
+		margin: 0; 
+		padding: 0;
 	}
 	nav li { 
 		margin: 0 .5em;
-		padding: 5px 2px; 
+		padding: 1em .25em .5em; 
+		position: relative;
+	}
+	nav li::after {
+	    content:'';
+	    background: {color:Header Link};
+	    width: 0;
+	    height: 2px;
+	    left: 50%;
+	    bottom: 0;
+	    position:absolute;
+	    transition: .2s ease-out;
+	}
+	nav li:hover::after {
+	    width: 100%;
+	    left: 0;
 	}
 }
 @media (max-width: 899px) {
@@ -193,7 +213,8 @@ HEADER
     	margin: 1em 0; 
     }
 	nav ol { 
-		margin: 1em 0; 
+		margin: 0; 
+		padding: .5em 0;
 	}
 	nav li { 
 		margin: 0 .25em; 
@@ -201,11 +222,17 @@ HEADER
 	}
 }
 header {
-	text-align: center;
 	color: {color:Header Text};
+	text-align: center;
+}
+header img {
+    width: 64px;
+    border-radius: 100%;
+    margin: 0 0 1em;
 }
 header h1 {
 	line-height: 1;
+	margin: 0;
 }
 header h1 a {
 	color: {color:Header Text};
@@ -214,12 +241,11 @@ header h1 a:hover {
 	color: {color:Header Link};
 }
 nav {
-	text-transform: uppercase;
-	letter-spacing: 4px;
+    text-transform: lowercase;
+    text-align: center;
 }
 nav ol { 
     list-style: none;
-	padding: 0;
 }
 nav li { 
     display: inline-block; 
@@ -366,10 +392,6 @@ TEXT POSTS
     margin-bottom: 4px;
     text-align: center;
 }
-.post-title + p,
-h2 + p {
-    margin-top: .5em;
-}
 blockquote {
 	border-left: 1px solid {color:Borders};
 }
@@ -381,10 +403,14 @@ blockquote blockquote {
 	    font-size: 1.25em; 
 	}
 	.post-date::before { 
-	    top: -138px; /* -[125px + (11px + 2px)] */
+	    top: -88px; /* -[75px + (11px + 2px)] */
 	}
+    .post-title + p,
+    h2 + p {
+        margin-top: .5em;
+    }
 	.post-body { 
-	    padding: 125px 150px; 
+	    padding: 75px 150px; 
 	}
     .text-post-title {
         padding:  75px 125px;
@@ -403,6 +429,10 @@ blockquote blockquote {
 	.post-date::before { 
 	    top: calc(-2em - 13px); 
 	}
+    .post-title + p,
+    h2 + p {
+        margin-top: .25em;
+    }
 	.post-body { 
         padding: 2em 10%; 
     }
@@ -442,7 +472,7 @@ blockquote blockquote {
 }
 @media (min-width: 900px) {
     .read-more { padding: 0 150px 125px; }
-    .post-body + .read-more { margin-top: -125px; }
+    .post-body + .read-more { margin-top: -65px; }
 }
 @media (max-width: 899px) {
     .read-more { padding: 0 10% 2em; }
@@ -469,7 +499,7 @@ PHOTO / VIDEO POSTS
 @media (max-width: 899px) {
 	.post-media {
 	    margin: 0 auto 4px;
-	    padding: 10%;
+	    padding: 5%;
 	}
 }
 .highresphoto {
@@ -572,9 +602,7 @@ LINK POSTS
 }
 .link-title {
 	color: {color:Body Text};
-	text-decoration: underline;
-	font-size: 1.5em;
-	line-height: 1.75;
+	font-size: 1.25em;
 }
 .link-host {
 	text-transform: uppercase;
@@ -868,7 +896,7 @@ POST FOOTER
     background: {color:Post Background};
 }
 @media (min-width: 900px) {
-	.post-notes { padding: 125px 150px; }
+	.post-notes { padding: 75px 150px; }
 }
 @media (max-width: 899px) {
 	.post-notes { padding: 2em 10%; }
@@ -978,25 +1006,29 @@ PAGINATION
 
 <body class="{select:Background Image Type} font-{select:Font}">
 
+<nav>
+	<ol class="wrap">
+	    <li><a href="/">{lang:Home}</a></li>
+		{block:AskEnabled}<li><a href="/ask">{text:Ask Label}</a></li>{/block:AskEnabled}
+		<li><a href="/archive">{lang:Archive}</a></li>
+		{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
+		{block:HasPages}
+			{block:Pages}
+				<li><a href="{URL}">{Label}</a></li>
+			{/block:Pages}
+		{/block:HasPages}
+	</ol>
+</nav>
+
 <div class="wrap">
 
+{block:HomePage}
 <header>
+    <a href="/"><img src="{PortraitURL-128}"></a>
 	<h1><a href="/">{Title}</a></h1>
 	<div class="description">{Description}</div>
-	<nav>
-		<ol>
-			{block:AskEnabled}<li><a href="/ask">{text:Ask Label}</a></li>{/block:AskEnabled}
-			<li><a href="/archive">{lang:Archive}</a></li>
-			{block:SubmissionsEnabled}<li><a href="/submit">{SubmitLabel}</a></li>{/block:SubmissionsEnabled}
-			{block:HasPages}
-				{block:Pages}
-					<li><a href="{URL}">{Label}</a></li>
-				{/block:Pages}
-			{/block:HasPages}
-		</ol>
-	</nav>
 </header>
-
+{/block:HomePage}
 
 <main>
 
@@ -1443,7 +1475,7 @@ PAGINATION
 </div><!-- wrap -->
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- jQuery -->
-<script src="https://static.tumblr.com/ouqpclx/heNnjoj2d/jquery.fitvids.js"></script> <!-- FitVids https://fitvidsjs.com/ -->
+<script src="https://static.tumblr.com/ouqpclx/heNnjoj2d/jquery.fitvids.js"></script> <!-- FitVids http://fitvidsjs.com/ -->
 
 
 <script> 
@@ -1453,7 +1485,7 @@ PAGINATION
         $(".video-post").fitVids();
       });
       
-    // vine responsive https://codepen.io/chrisdrogaris/pen/KIBvJ
+    // vine responsive http://codepen.io/chrisdrogaris/pen/KIBvJ
       
       //Use fitvids.js to make it responsive
     $('body').fitVids({
@@ -1481,9 +1513,11 @@ PAGINATION
 
     });
 
-    // for native tumblr video https://stackoverflow.com/questions/24084703/responsive-tumblr-videos-not-working
+    // for native tumblr video http://stackoverflow.com/questions/24084703/responsive-tumblr-videos-not-working
     $('.video-post').fitVids({ customSelector: "iframe[src*='tumblr.com'], iframe[src='about:blank']" });
 </script>
+
+
 
 
 </body>
