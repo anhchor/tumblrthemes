@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+
+<!-- 
+    aug. 6, 2016
+-->
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{Title}</title>
+	<link href='https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.1.0.slim.min.js" integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8=" crossorigin="anonymous"></script>
+	<script src="http://static.tumblr.com/ouqpclx/RHZocpchy/isotope.pkgd.min.js"></script>
+	<script src="http://static.tumblr.com/ouqpclx/kQCocpcir/imagesloaded.pkgd.min.js"></script>
+	<!-- http://static.tumblr.com/ouqpclx/RHZocpchy/isotope.pkgd.min.js
+	http://static.tumblr.com/ouqpclx/kQCocpcir/imagesloaded.pkgd.min.js
+	http://isotope.metafizzy.co/
+	http://imagesloaded.desandro.com/ 
+	-->
+
+<!-- CUSTOMIZATION OPTIONS -->
+
+
+<meta name="color:Posts Background Colour" content="#fff" />
+<meta name="color:Posts Text Colour" content="#444" />
+<meta name="color:Posts Link Colour" content="#40bfdc" />
+<meta name="color:Posts Link Hover Colour" content="#48a1b4" />
+<meta name="color:Tags Colour" content="#999" />
+<meta name="color:Blockquote Border Colour" content="#ddd" />
+
+<meta name="image:Background Image" content="" />
+
+<meta name="if:Show Tags on Index Page" content="1" />
+
+<style type="text/css">
+
+body {
+    background: #eee;
+    background-image:url('{image:Background Image}');
+    /*background-size: cover;
+    background-position: center center;*/
+    background-attachment: fixed;
+    color: #444;
+    font-family: 'Lora', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+}
+a {
+    color: {AccentColor};
+    text-decoration: none;
+}
+img {
+    max-width: 100%;
+}
+blockquote {
+    margin: 0 0 0 30px;
+    padding: 0 0 0 20px;
+    border-left: 1px solid {color:Blockquote Border Colour};
+}
+.blog-subtitle {
+    letter-spacing: 1px;
+    font-size: 1.15rem;
+    margin: 0 0 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+header {
+    background: #fff;
+    width: 100%;
+    padding: 50px 30px;
+    box-sizing: border-box;
+    border: 30px solid #fff;
+    margin: 30px 0;
+    background-image: url("{HeaderImage}");
+    background-size: cover;
+    background-position: center center;
+}
+header h1 {
+    text-align: center;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #ccc;
+    font-weight: normal;
+    font-family: 'Abril Fatface', Garamond, serif;
+}
+.blog-description {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 30px;
+    color: #fff;
+    background: rgba(0,0,0,0.3);
+}
+.blog-description::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30px 30px 0;
+    border-color: transparent rgba(255,255,255,0.3) transparent transparent;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.blog-description::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 0 0 30px;
+    border-color: transparent transparent transparent rgba(255,255,255,0.3);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.blog-navigation {
+    list-style: none;
+    margin: 30px 0;
+    padding: 0;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 20px;
+}
+.blog-navigation a {
+    color: #fff;
+}
+.blog-navigation li {
+    display: inline-block;
+    margin: 0 14px;
+    padding: 10px 5px;
+    position: relative;
+}
+.blog-navigation li::before,
+.blog-navigation li::after {
+    width: 0;
+    left: 50%;
+    position: absolute;
+    height: 2px;
+    content: '';
+    background-color: #fff;
+    transition: .15s ease-out;
+}
+.blog-navigation li::before {
+    top: 0;
+}
+.blog-navigation li::after {
+    bottom: 0;
+}
+.blog-navigation li:hover::before,
+.blog-navigation li:hover::after {
+    width: 100%;
+    left: 0;
+}
+.container {
+    width: 95%;
+    max-width: 1540px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.posts-index {
+    width: 95%;
+    max-width: 1540px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.posts-permalink {
+    width: 95%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+article {
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+.gutter {
+    width: 20px;
+}
+@media (min-width: 768px) {
+    article { padding: 30px; }
+    .article-index { width: calc(50% - 10px); }
+    .article-permalink { width: 900px; margin-left: auto; margin-right: auto; }
+    header h1 { font-size: 100px; }
+}
+@media (min-width: 401px) and (max-width: 767px) {
+    article { width: 100%; padding: 30px; }
+    header h1 { font-size: 60px; }
+}
+@media (min-width: 401px) {
+    .chat-post li { padding: 15px; }
+    .post-info { margin: 25px -30px 0; padding: 25px 30px 0; }
+    .pagination li { padding: 15px; }
+}
+@media (max-width: 400px) {
+    header h1 { font-size: 30px; }
+    article { width: 100%; padding: 15px; }
+    .chat-post li { padding: 10px; }
+    .post-info { margin: 10px -15px 0; padding: 10px 15px 0; }
+    .pagination li { padding: 5px 10px; }
+}
+
+
+.box {
+    padding: 30px; 
+    border: 5px solid #fff;
+    outline: 1px solid {color:Blockquote Border Colour};
+    background: #f2f2f2;
+}
+
+article h2 {
+    margin: 30px 0 0;
+    padding: 0 0 5px;
+    border-bottom: 1px solid {color:Blockquote Border Colour};
+}
+.post-title {
+    margin: 0;
+    padding: 0;
+    font-family: 'Abril Fatface', Garamond, serif;
+    font-size: 32px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+.text-content {
+    padding: 10px 0;
+}
+
+/* PHOTO POSTS */
+.media-container {
+    text-align: center;
+    position: relative;
+}
+.photoset-post iframe {
+    width: 1px; 
+    min-width: 100%; 
+    *width: 100%; 
+}
+.media-container:hover .highres { 
+    opacity: 1; 
+}
+.highres { 
+    background: rgba(0,0,0,.6); 
+    color: #fff; 
+    margin: 1rem 0 0 1rem; 
+    padding: .5em .8em; 
+    opacity: 0; 
+    position: absolute; 
+    text-align: center; 
+    transition:.2s ease-in; 
+    z-index: 2;
+}
+.highres:hover { 
+    background: rgba(0,0,0,.8); 
+}
+img.nothighres { 
+    display: none; 
+}
+
+/* QUOTE POSTS */
+.quote-post {
+    font-weight: 400;
+    margin: 0 0 30px;
+    padding: 30px;
+    background: #f2f2f2;
+    border: 5px solid #fff;
+    outline: 1px solid {color:Blockquote Border Colour};
+}
+.quote-short { /* short quote */
+    font-size: 1.5rem;
+}
+.quote-medium { /* medium quote */
+    font-size: 1.3rem;
+}
+.quote-long { /* long quote */
+    font-size: 1.15rem;
+}
+.quote-source::before {
+    content: '\2014'; /* em dash */
+    margin-right: .25rem;
+}
+.link-post {
+    margin: 10px 0 15px;
+}
+.chat-post {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 5px solid #fff;
+    outline: 1px solid {color:Blockquote Border Colour};
+}
+.chat-post li {
+    border-bottom: 2px solid #fff;
+    background: #f2f2f2;
+}
+.chat-post li:last-child {
+    border: none;
+}
+.chat-label {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.audio-post iframe {
+    width: 1px; 
+    min-width: 100%; 
+    *width: 100%; 
+}
+.spotify_audio_player { 
+    height:80px; 
+}
+.question {
+    border-bottom: 4px solid {color:Blockquote Border Colour};
+    margin: 0 0 20px 0;
+    padding: 0 0 15px 0;
+}
+.question h1 {
+    font-size: 1.2rem;
+}
+.asker {
+    margin: 0 0 10px;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30px 30px 0;
+    border-color: transparent #222 transparent transparent;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}
+.post-date {
+    border-bottom: 1px solid {color:Blockquote Border Colour};
+    letter-spacing: 1px;
+    line-height: 1.15;
+    margin: 0 -30px 30px;
+    padding: 0 30px 30px;
+    text-transform: uppercase;
+}
+.day-of-month {
+    font-size: 44px;
+    line-height: 30px;
+    float: left;
+    vertical-align: top;
+    margin: 0 5px 0 0;
+    font-family: 'Abril Fatface', Garamond, serif;
+}
+.month,
+.year {
+    display: inline-block;
+}
+.post-info {
+    font-size: .9em;
+    border-top: 1px solid {color:Blockquote Border Colour};
+}
+.post-tags {
+    list-style: none;
+    margin: 0 0 5px;
+    padding: 0;
+}
+.post-tags a {
+    color: #999;
+}
+.post-tags a:hover {
+    color: {AccentColor};
+}
+.post-tags li {
+    display: inline;
+}
+.post-tags li:not(:last-of-type) {
+    margin-right: 10px;
+}
+.post-stats {
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+/* PAGINATION */
+.pagination { 
+    clear: both; 
+    color: {color:Sidebar Text Colour};
+    font-size: .9rem; 
+    text-align: center; 
+    margin: 0 0 40px;
+}
+.pagination ol { 
+    list-style: none; 
+    margin: 0; 
+    padding: 20px 0;
+}
+.pagination li { 
+    border-bottom: 2px solid {color:Sidebar Text Colour}; 
+    display: inline-block; 
+    margin: 0px 1px; 
+    position: relative;
+    transition: .15s;
+}
+.pagination li:hover {
+    border-bottom: 2px solid {color:Sidebar Navigation Colour};
+}
+.pagination a { 
+    color: {color:Sidebar Text Colour};
+}
+.pagination li#current { 
+    border-bottom: 2px solid {color:Sidebar Navigation Colour};
+    font-weight: 700;
+}
+.pagination ul { /* day/tag pages navigation */
+    list-style: none;
+    margin: 0; 
+    padding: 20px 0; 
+    text-align: right;
+}
+.pagination .nextday { 
+    float: left;
+    position: relative;
+}
+.pagination ul li { 
+    margin:0 0 20px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="container">
+	<ul class="blog-navigation">
+    	<a href="/"><li>Home</li></a>
+        {block:AskEnabled}<a href="/ask"><li>{AskLabel}</li></a>{/block:AskEnabled}
+        <!--<a href="/archive"><li>{lang:Archive}</li></a>-->
+        {block:SubmissionEnabled}<a href="/submit"><li>{SubmitLabel}</li></a>{/block:SubmissionEnabled}
+        {block:HasPages}
+        {block:Pages}<a href="{URL}"><li>{Label}</li></a>{/block:Pages}
+        {/block:HasPages}
+	</ul>
+</nav>
+<header class="container"><h1>{Title}</h1></header>
+<div class="blog-description">{Description}</div>
+
+
+<main class="posts posts-index">
+<div class="gutter"></div>
+{block:Posts}
+
+{block:IndexPage}<article class="article-index">{/block:IndexPage}
+{block:PermalinkPage}<article class="article-permalink">{/block:PermalinkPage}
+
+
+{block:Date}
+	<div class="post-date">
+    	<a href="{Permalink}">
+    	    <div class="day-of-month">{DayOfMonth}</div>
+    	    <div class="month">{Month}</div>
+    	    <br />
+    	    <div class="year">{Year}</div>
+    	</a>
+	</div>
+	<div class="triangle"></div>
+{/block:Date}
+
+
+{block:Text}
+	{block:Title}<h1 class="post-title">Text post</h1>{/block:Title}
+	{Body}
+	{block:More} <!-- *** render for other post types -->
+        <p class="read-more"><a href="{Permalink}">{lang:Read more}</a></p>
+    {/block:More}
+{/block:Text}
+
+{block:Photo}
+    <div class="media-container">
+        {block:LinkURL}{LinkOpenTag}{/block:LinkURL}
+            <img src="{PhotoURL-500}" alt="{PhotoAlt}" {block:HighRes} class="nothighres" {/block:HighRes} />
+        {block:LinkURL}{LinkCloseTag}{/block:LinkURL}
+        {block:HighRes}
+            <a href="/image/{PostID}" title="{lang:View high resolution} ({PhotoWidth-HighRes} x {PhotoHeight-HighRes})"><div class="highres all-caps">High-res</div></a>
+            {block:LinkURL}{LinkOpenTag}{/block:LinkURL}
+                <img src="{PhotoURL-HighRes}" alt="{PhotoAlt}" class="highresphoto" />
+            {block:LinkURL}{LinkCloseTag}{/block:LinkURL}
+        {/block:HighRes}
+    </div>
+    {block:Caption}<div class="text-content">{Caption}</div>{/block:Caption}
+{/block:Photo}
+
+{block:Panorama}
+    <div class="media-container">
+        {LinkOpenTag}<img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" />{LinkCloseTag}
+    </div>
+    {block:Caption}<div class="text-content">{Caption}</div>{/block:Caption}
+{/block:Panorama}
+
+{block:Photoset}
+    <div class="media-container photoset-post">{Photoset}</div>
+    {block:Caption}<div class="text-content">{Caption}</div>{/block:Caption}
+{/block:Photoset}
+
+{block:Quote}
+    <h1 class="quote-post quote-{Length}">{Quote}</h1>
+    {block:Source}<div class="quote-source">{Source}</div>{/block:Source}
+    {block:Caption}{Caption}{/block:Caption}<!-- *** check if valid -->
+{/block:Quote}
+
+{block:Link}
+    {block:Author}<div class="all-caps">{Author}</div>{/block:Author}
+    {block:Host}<div class="all-caps">{Host}</div>{/block:Host}
+    <div class="link-post">
+        <h1 class="post-title"><a href="{URL}">{Name}</a></h1>
+    </div>
+    {block:Excerpt}<blockquote>{Excerpt}</blockquote>{/block:Excerpt}
+    {block:Description}{Description}{/block:Description}
+{/block:Link}
+
+{block:Chat}
+    {block:Title}<h1 class="text-post-title">{Title}</h1>{/block:Title}
+    <ul class="chat-post">
+        {block:Lines}
+            <li>{block:Label}<span class="chat-label">{Label}</span>{/block:Label} {Line}</li>
+        {/block:Lines}
+    </ul>
+{/block:Chat}
+
+{block:Audio}
+    {block:AudioEmbed}
+        <div class="media-container audio-post">{AudioEmbed}</div>
+    {/block:AudioEmbed}
+    {block:Caption}{Caption}{/block:Caption}
+{/block:Audio}
+
+<!--
+{block:Video}
+    <div class="media-container video-post">{VideoEmbed-700}</div>
+    {block:Caption}{Caption}{/block:Caption}
+{/block:Video}-->
+
+{block:Answer}
+    <div class="question">
+        <div class="asker all-caps">
+            {lang:Asked by Asker 2}
+        </div>
+        <div class="box">
+            <h1>{Question}</h1>
+        </div>
+    </div>
+    {Answer}
+{/block:Answer}
+
+{block:Date}
+	<footer class="post-info">
+		{block:IfShowTagsonIndexPage}
+            {block:HasTags}
+                <ul class="post-tags">
+                {block:Tags}<li><a href="{TagURL}">#{Tag}</a></li>{/block:Tags}
+                </ul>
+            {/block:HasTags}
+        {/block:IfShowTagsonIndexPage}
+        {block:NoteCount}
+        	<div class="post-stats"><a href="{Permalink}">{NoteCountWithLabel}</a></div>
+        {/block:NoteCount}
+        {block:PermalinkPage}
+            {block:PostNotes}
+                <section class="post-notes">
+                    {PostNotes}
+                </section>
+            {/block:PostNotes}
+        {/block:PermalinkPage}
+    </footer>
+{/block:Date}
+</article>
+
+{/block:Posts}
+</main><!--posts container-->
+
+{block:Pagination}
+    <div class="pagination">
+        <ol>
+            {block:PreviousPage}<a href="{PreviousPage}"><li>&laquo;</li></a>{/block:PreviousPage}
+            {block:JumpPagination length="5"}
+            {block:CurrentPage}<li id="current">{CurrentPage}</li>{/block:CurrentPage}
+            {block:JumpPage}<a href="{URL}"><li>{PageNumber}</li></a>{/block:JumpPage}
+            {/block:JumpPagination}
+            {block:NextPage}<a href="{NextPage}"><li>&raquo;</li></a>{/block:NextPage}
+        </ol>
+    {lang:Page CurrentPage of TotalPages}
+    </div>
+{/block:Pagination}
+
+<script>
+
+var $posts = $('.posts').isotope({
+	masonry: {
+		// use outer width of article for columnWidth
+		columnWidth: '.article-index',
+		gutter: '.gutter'
+	},
+	itemSelector: '.article-index',
+	percentPosition: true
+});
+
+$posts.imagesLoaded().progress( function() {
+	$posts.isotope('layout');
+});
+
+</script>
+
+</body>
+</html>
