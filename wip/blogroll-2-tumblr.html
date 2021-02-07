@@ -1,0 +1,151 @@
+<!doctype html>
+
+<!--
+
+anhchors.tumblr.com
+october 2019 v.1
+
+-->
+
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>
+        following
+    </title>
+    <link rel="shortcut icon" href="{Favicon}" >
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+
+:root {
+  --spacing: 2em;
+}
+
+body {
+  background-color: #f1f1f1;
+  font-family: serif;
+  font-size: 150%;
+  line-height: 1.4;
+  color: #222; 
+
+  margin: 0;
+}
+
+img {
+  max-width: 100%; 
+}
+
+a img {
+  text-decoration: none; 
+}
+
+
+.wrapper {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box; 
+
+}
+
+
+/* header
+================================ */
+header {
+  padding: var(--spacing) 0;
+  background: white;
+}
+
+.blog-title {
+  font-size: 1em; 
+  margin-top: 0;
+}
+
+.blog-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  font-size: .8em;
+  text-transform: lowercase; 
+}
+
+.blog-nav li {
+  display: inline-block;
+  margin-right: 1em; 
+}
+
+.blog-nav:not(:last-of-type) {
+  margin-right: 1em; 
+}
+
+
+
+/* list of blogs
+===================== */
+
+main {
+    margin-top: var(--spacing);
+    margin-bottom: var(--spacing);
+}
+.blog-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+.blog-list a {
+    flex: 1 0 300px;
+
+    text-decoration: none;
+}
+.blog-list li {
+    border: 5px solid black;
+    margin: 5px;
+    transition: .2s;
+}
+.blog-list li:hover {
+    border: 5px solid blue;
+}
+
+.blog-icon {
+    width: 60px;
+    background: #111;
+    display: block;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <section class="blog-info wrapper">
+        <h1 class="blog-title">following</h1>
+    </section>
+    <nav class="wrapper">
+        <ul class="blog-nav">
+            <li><a href="/">back to my blog</a></li>
+            <li><a href="/ask">askbox</a></li>
+            <li><a href="/archive">archive</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="wrapper">
+    {block:Following}
+        <ul class="blog-list">
+            {block:Followed}
+                <li><a href="{FollowedURL}"><img src="{FollowedPortraitURL-64}" alt="{FollowedName}" class="blog-icon"></a></li>
+            {/block:Followed}
+        </ul>
+    {/block:Following}
+</main>
+
+</body>
+</html>

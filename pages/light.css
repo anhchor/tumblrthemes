@@ -1,0 +1,91 @@
+body {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 18px;
+	line-height: 1.45;
+
+	background-color: #ffffff; /* page background colour */
+	color: #111; /* text colour */
+}
+
+/* screens over 700px wide (such as: computers, laptops, tablets) */
+@media screen and (min-width: 700px) {
+  body {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+  }
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2em;
+		padding: 2em;
+  }
+}
+/* for screens under 700px wide (such as: phones) */
+@media screen and (max-width: 699px) {
+	main {
+		padding: 1em;
+	}	
+	.subsection {
+		margin-top: 2em;
+		margin-bottom: 2em;
+	}
+}
+main {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.bio {
+  grid-column: span 2;
+}
+.wide {
+	grid-column: span 2;
+}
+
+/* Lists */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin: .5em 0;
+}
+li::before {
+  content: '\2014'; /* a dash before each list item */
+  margin-right: .25em;
+}
+
+a {
+	color: #ab154c; /* Link colour */
+}
+
+h1 { /* Heading 1, at the top of the page */
+	margin-top: 0;
+
+	color: #ab154c;
+	font-size: 1.5em;
+	line-height: 1.1;
+	font-style: italic;
+}
+
+h2 { /* Heading 2, above the smaller sections */
+	margin-top: .5em;
+
+	font-size: 1.25em;
+	font-style: italic;
+}
+
+
+.icon { /* image icon */
+	margin-bottom: 1em;
+
+	border-radius: 100%; /* makes it a circle */
+	width: 80px; /* size of icon */
+}
+
+.subsection { /* the two smaller sections at the bottom */
+	border-top: 2px solid #111;
+}

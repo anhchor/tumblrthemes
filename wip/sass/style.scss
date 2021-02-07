@@ -1,0 +1,68 @@
+@import 'var';
+
+body {
+	background-color: $background-body;
+
+	font-family: $font;
+	font-size: 120%;
+	color: $font-colour;
+}
+
+img {
+	max-width: 100%;
+}
+
+a img {
+	text-decoration: none;
+}
+
+
+/* header
+================================ */
+
+header {
+	padding: 1em 0;
+	border-bottom: 2px solid $border;
+}
+.blog-icon {
+	border-radius: 100%;
+	width: 60px;
+}
+.blog-title {
+	font-size: 1em;
+}
+.blog-nav {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	text-transform: lowercase;
+}
+.blog-nav li {
+	display: inline-block;
+	margin-right: 1em;
+}
+.blog-nav:not(:last-of-type) {
+	margin-right: 1em;
+}
+
+
+
+
+
+/* posts
+================================ */
+
+main {
+	background-color: $background-main;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 3em;
+}
+
+
+.user-icon {
+	width: 1.2em;
+	border-radius: 100%;
+	vertical-align: middle;
+}
