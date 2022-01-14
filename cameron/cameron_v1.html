@@ -11,13 +11,28 @@ january 2021
 <head>
     <meta charset="UTF-8" />
     <title>
-      {Title}
+    	{block:PostSummary}{PostSummary} - {/block:PostSummary}
+        {block:DayPage}{ShortMonth} {DayOfMonth}, {Year} - {/block:DayPage}
+        {block:TagPage}#{Tag} - {/block:TagPage}
+        {block:SearchPage}{SearchQuery} - {/block:SearchPage}
+        {Title}
     </title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{Favicon}" >
     <link rel="alternate" type="application/rss+xml" href="{RSS}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="color:Page Background" content="#0f0f27">
+<meta name="color:Post Background" content="#050515">
+<meta name="color:Text Primary" content="#f3f3f3">
+<meta name="color:Text Secondary" content="#b6b6e0">
+<meta name="color:Text Tertiary" content="#f68dd7">
+<meta name="color:Accent" content="#fa386f">
+<meta name="color:Border" content="#292954">
+
+<meta name="if:Black Like and Reblog Buttons" content="0">
 
 
 <style type="text/css">
@@ -30,20 +45,6 @@ january 2021
 :root {
   --font-body: 'Inter', sans-serif;
   --font-heading: 'hatton', georgia, serif;
-
-  --post-bg: #050515;
-  /* --post-bg: #100f26; */
-  --page-bg: #0f0f27;
-  --post-text: #f3f3f3;
-  --border: #292954;
-  --code-bg: #3a264b;
-
-  --text-sub-primary: #f68dd7;
-  --text-sub-secondary: #b6b6e0;
-
-  --pink: #fa386f;
-  --pink-light: #ff6ab0;
-  --accent: var(--pink);
 }
 
 @media screen and (min-width: 700px) {
@@ -56,7 +57,8 @@ january 2021
     --sp-edge: 2rem;
 
     --font-size-body: 18px;
-    --font-size-lg: 1.5em;
+    --font-size-xl: 1.75em;
+    --font-size-lg: 1.25em;
     --font-size-sm: .8em;
   }
 }
@@ -77,11 +79,11 @@ january 2021
 }
 
 body {
-  background-color: var(--page-bg);
+  background-color: {color:Page Background};
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: 1.4;
-  color: #f3f3f3; 
+  color: {color:Text Primary}; 
 
   margin: 0;
 }
@@ -96,9 +98,9 @@ body {
 }
 
 
-::selection {
+/* ::selection {
   background-color: var(--code-bg);
-}
+} */
 
 img {
   max-width: 100%; 
@@ -106,21 +108,21 @@ img {
 }
 
 a {
-  color: var(--pink);
+  color: {color:Accent};
   text-decoration: none;
 }
 a:hover {
-  color: var(--pink-light);
+  color: {color:Text Secondary};
 }
 a img {
   text-decoration: none; 
 }
 
-code {
+/* code {
   background-color: var(--code-bg);
   padding: .1em .2em;
   border-radius: 3px;
-}
+} */
 
 
 /* variables
@@ -148,8 +150,8 @@ code {
 /* header
 ================================ */
 .blog-header {
-  background-color: var(--post-bg);
-  color: #f3f3f3;
+  background-color: {color:Post Background};
+  color: {color:Text Primary};
   font-size: var(--font-size-sm);
 }
 
@@ -201,7 +203,7 @@ code {
 
 
 .blog-nav__title {
-  color: var(--text-sub-primary);
+  color: {color:Text Tertiary};
   font-size: .85em;
   font-weight: bold;
   letter-spacing: 1px;
@@ -223,7 +225,7 @@ code {
     padding: .5rem 0;
   }
   .blog-nav__item:not(:last-of-type) {
-    border-bottom: 2px solid var(--border);
+    border-bottom: 2px solid {color:Border};
   }
 }
 @media screen and (max-width: 1200px) {
@@ -249,9 +251,20 @@ main {
   grid-column-start: 3;
 }
 
+.page-sort {
+  padding: var(--sp) var(--sp-edge) 0;
+  text-align: center;
+  color: {color:Text Secondary};
+  font-size: var(--font-size-sm);
+}
+.page-sort .tag {
+  color: var(--pink);
+  font-weight: bold;
+}
+
 .post {
-  background: var(--post-bg);
-  color: var(--post-text);
+  background: {color:Post Background};
+  color: {color:Text Primary};
   
   margin-top: var(--sp);
   margin-bottom: var(--sp);
@@ -260,8 +273,93 @@ main {
   display: block;
 }
 .post__content {
-  padding: var(--sp-edge) var(--sp-edge);
+  padding: var(--sp-edge);
 }
+
+
+#ask_form {
+  margin-top: var(--sp-sm);
+}
+
+
+/* reblog item
+================================ */
+
+.reblog-item {
+  padding: var(--sp-edge);
+}
+.reblog-item:not(:first-of-type) {
+  border-top: 1px solid {color:Border};
+}
+
+.post__answer-wrapper + .reblog-item {
+  border-top: 1px solid {color:Border};
+}
+
+.reblog-item > p:last-of-type {
+  margin-bottom: .5em;
+}
+.post__content + .reblog-item {
+  border-top: 1px solid {color:Border};
+}
+
+
+
+.post__content > hr,
+.reblog-item > hr,
+.post__quote > hr {
+  border: 0;
+  height: 1px;
+  background-color: {color:Border};
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.post__content > h2,
+.reblog-item > h2,
+.post__quote > h2 {
+  font-size: var(--font-size-lg);
+  line-height: 1.15;
+  margin-top: var(--sp);
+}
+
+.post__content > blockquote,
+.reblog-item > blockquote,
+.post__quote > blockquote {
+  border-left: 2px solid {color:Border};
+  margin-left: 1em;
+  margin-bottom: 1.5em;
+  padding-left: 1em;
+}
+
+.post__content > ul,
+.reblog-item > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.post__content > ul > li,
+.reblog-item > ul > li {
+  margin-left: 2em;
+  margin-bottom: .25em;
+  position: relative;
+}
+
+.post__content > ul > li::before,
+.reblog-item > ul > li::before {
+  content: '–';
+  color: {color:Text Tertiary};
+  position: absolute;
+  left: -1em;
+}
+
+
+
+.post__content > ol > li::marker,
+.reblog-item > ol > li::marker {
+  color: {color:Text Tertiary};
+}
+
 
 .reblog-item__user-icon {
   width: 1.2em;
@@ -276,6 +374,14 @@ main {
   vertical-align: middle; 
 }
 
+.read-more {
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  text-transform: uppercase;
+
+  padding: 0 var(--sp-edge) var(--sp-edge);
+}
+
 
 
 
@@ -283,22 +389,23 @@ main {
 ================================ */
 
 .post__header {
-  color: var(--text-sub-secondary);
+  color: {color:Text Secondary};
   font-size: var(--font-size-sm);
 
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid {color:Border};
   padding: calc(var(--sp-edge) / 2) var(--sp-edge);
 }
 
-
-
-
 .post__title {
   font-family: var(--font-heading);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 1.15;
   margin: 0;
+  padding: var(--sp-edge) var(--sp-edge) 0;
+}
+.post__title + .post__content {
+  padding-top: 0;
 }
 
 
@@ -311,7 +418,7 @@ main {
 }
 
 .post__media-link {
-  color: var(--text-sub-secondary);
+  color: {color:Text Secondary};
   font-size: var(--font-size-sm);
 
   display: inline-block;
@@ -340,8 +447,11 @@ main {
 .post__quote { 
   padding: var(--sp-edge) var(--sp-edge);
 }
-.post__quote-text {
-}
+/* .post__quote-text {
+  border-bottom: 2px solid {color:Border};
+  padding-bottom: .5em;
+  margin-bottom: 1.5em;
+} */
 .post__quote-text > p {
   margin-top: 0;
 }
@@ -360,19 +470,24 @@ main {
   line-height: 1.25;
 }
 
+.post__quote-source::before {
+  content: '– ';
+}
+
 
 
 /* link posts
 ================================ */
 
 .post__link-url {
-  color: var(--text-sub-secondary);
+  color: {color:Text Secondary};
   font-size: var(--font-size-sm);
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
 
   margin-top: .75em;
+  margin-bottom: 0;
 }
 .post__link-image { 
   margin-top: var(--sp-sm);
@@ -389,14 +504,20 @@ main {
   padding: 0;
 }
 .post__chat-item {
-  padding: .75em 0 0;
+  padding: .75em 0;
 }
 .post__chat-item:not(:last-of-type) {
-  padding-bottom: .75em;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 2px solid {color:Border};
 }
 .post__chat-label {
   font-weight: bold;
+}
+.post__content > ul > li.post__chat-item {
+  margin-left: 0;
+  margin-bottom: 0;
+}
+.post__content > ul > li.post__chat-item::before {
+  content: '';
 }
 
 
@@ -428,7 +549,7 @@ main {
 
 .post__asker,
 .post__answerer {
-  color: var(--text-sub-primary);
+  color: {color:Text Tertiary};
   font-size: var(--font-size-sm);
   font-weight: bold;
   letter-spacing: 1px;
@@ -452,29 +573,6 @@ main {
 
 
 
-/* reblog item
-================================ */
-
-.reblog-item {
-  padding: var(--sp-edge);
-}
-.reblog-item:not(:first-of-type) {
-  border-top: 1px solid var(--border);
-}
-
-.post__answer-wrapper + .reblog-item {
-  border-top: 1px solid var(--border);
-}
-
-.reblog-item > p:last-of-type {
-  margin-bottom: .5em;
-}
-
-.reblog-item > blockquote {
-  border-left: 2px solid var(--border);
-  margin-left: 1em;
-  padding-left: 1em;
-}
 
 
 
@@ -487,11 +585,16 @@ main {
   justify-content: space-between;
 
   padding: 1em var(--sp-edge);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid {color:Border};
   font-size: var(--font-size-sm);
 
   text-transform: lowercase;
 }
+
+.post__title + .post-footer {
+  margin-top: var(--sp-edge);
+}
+
 .post-footer--permalink {
   padding: var(--sp-sm) var(--sp-edge);
 }
@@ -502,6 +605,7 @@ main {
   list-style-type: none;
   margin: 0 0 1em;
   padding: 0;
+  text-transform: initial;
 
   flex: 1 0 100%;
 
@@ -512,10 +616,10 @@ main {
   margin-right: 1.25em;
 }
 .post-footer__tag-link {
-  color: var(--text-sub-secondary);
+  color: {color:Text Secondary};
 }
 .post-footer__tag-link:hover {
-  color: var(--text-sub-primary);
+  color: {color:Text Tertiary};
 }
 
 
@@ -568,11 +672,11 @@ ol.notes .note {
 }
 
 ol.notes .note:not(:last-of-type) { 
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid {color:Border};
 }
 
 ol.notes blockquote {
-  border-left: 2px solid var(--border);
+  border-left: 2px solid {color:Border};
   margin-left: 1em;
   padding-left: 1em;
 }
@@ -599,25 +703,28 @@ ol.notes blockquote {
 .pagination__item {
   margin-right: 3px;
   padding: .5em .75em;
-  border-bottom: 2px solid var(--border);
+  border-bottom: 2px solid {color:Border};
 
   transition: .2s ease-out;
 }
 .pagination__link:hover .pagination__item {
-  background-color: var(--post-bg);
-  border-bottom: 2px solid var(--accent);
-  color: var(--accent);
+  background-color: {color:Post Background};
+  border-bottom: 2px solid {color:Accent};
+  color: {color:Accent};
 }
 
 .pagination__item--current {
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 2px solid {color:Accent};
   font-weight: bold;
 }
 
 .pagination__count {
-  color: var(--text-sub-secondary);
+  color: {color:Text Secondary};
   font-size: var(--font-size-sm);
 }
+
+
+{CustomCSS}
 
 
 </style>
@@ -651,7 +758,26 @@ ol.notes blockquote {
 
 <main>
 
+{block:DayPage}
+  <div class="page-sort">
+    {Month} {DayOfMonth}, {Year}
+  </div>
+{/block:DayPage}
 
+{block:TagPage}
+  <div class="page-sort">
+    {lang:Posts tagged Tag 2}
+  </div>
+{/block:TagPage}
+
+{block:SearchPage}
+  <div class="page-sort">
+    {lang:Showing SearchResultCount results for SearchQuery 2}
+    {block:NoSearchResults}
+      {lang:No results for SearchQuery 2}
+    {/block:NoSearchResults}
+  </div>
+{/block:SearchPage}
 
 {block:Posts inlineMediaWidth="700"}
 
@@ -664,9 +790,7 @@ ol.notes blockquote {
 
   {block:Text}
     {block:Title}
-      <section class="post__content">
-        <h2 class="post__title post__title--index">{Title}</h2>{/block:Title}
-      </section>
+      <h2 class="post__title post__title--index">{Title}</h2>{/block:Title}
     {/block:Title}
   {/block:Text}
   
@@ -704,7 +828,6 @@ ol.notes blockquote {
     {/block:Caption}
   {/block:Photoset}
 
-
   {block:Audio}
     <section class="post__media post__media--audio">
       {block:AudioEmbed}
@@ -722,7 +845,7 @@ ol.notes blockquote {
   {block:Quote}
     <section class="post__quote">
       <div class="post__quote-text post__quote-text--{Length}">
-        {Quote}
+        <p>{Quote}</p>
       </div>
 
       {block:Source}
@@ -732,19 +855,19 @@ ol.notes blockquote {
   {/block:Quote}
 
   {block:Link}
+    <h1 class="post__title post__title--link post__title--index"><a href="{URL}">{Name}</a></h1>
     <section class="post__content">
-      <h2 class="post__title post__title--link post__title--index"><a href="{URL}">{Name}</a></h2>
       {block:Host}<p class="post__link-url">{Host}</p>{/block:Host}
       {block:Thumbnail}<img src="{Thumbnail-HighRes}" alt="{Name}" class="post__link-image">{/block:Thumbnail}
     </section>
   {/block:Link}
 
   {block:Chat}
+    {block:Title}<h2 class="post__title post__title--index">{Title}</h2>{/block:Title}
     <section class="post__content">
-      {block:Title}<h2 class="post__title post__title--index">{Title}</h2>{/block:Title}
       <ul class="post__chat-list">
         {block:Lines}
-          <li class="post__chat-item">{block:Label}<strong>{Label}</strong>{/block:Label}: {Line}</li>
+          <li class="post__chat-item">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</li>
         {/block:Lines}
       </ul>
     </section>
@@ -789,11 +912,14 @@ ol.notes blockquote {
   {/block:RebloggedFrom}
   
   {block:NotReblog}
-    <section class="post__content {block:Photo} hidden {/block:Photo} {block:Photoset} hidden {/block:Photoset}">
+    <section class="post__content {block:Photo} hidden {/block:Photo} {block:Photoset} hidden {/block:Photoset} {block:Quote} hidden {/block:Quote}">
       {Body}
     </section>
   {/block:NotReblog}
 
+  {block:More}
+    <div class="read-more"><a href="{Permalink}">{lang:Read more} →</a></div>
+  {/block:More}
 
   {block:Date}
     <footer class="post-footer {block:Permalink} post-footer--permalink {/block:Permalink}">
@@ -826,8 +952,14 @@ ol.notes blockquote {
       </div>
 
       <ul class="reblog-like">
-        <li class="reblog-like__reblog">{ReblogButton color="white" size="16"}</li>
-        <li class="reblog-like__like">{LikeButton color="white" size="15"}</li>
+        {block:IfNotBlackLikeandReblogButtons}
+          <li class="reblog-like__reblog">{ReblogButton color="white" size="16"}</li>
+          <li class="reblog-like__like">{LikeButton color="white" size="15"}</li>
+        {/block:IfNotBlackLikeandReblogButtons}
+        {block:IfBlackLikeandReblogButtons}
+          <li class="reblog-like__reblog">{ReblogButton color="black" size="16"}</li>
+          <li class="reblog-like__like">{LikeButton color="black" size="15"}</li>
+        {/block:IfBlackLikeandReblogButtons}
       </ul>
 
       {block:PostNotes}
@@ -856,7 +988,6 @@ ol.notes blockquote {
 {/block:Pagination} 
 
 </main>
-
 
 
 </body>
